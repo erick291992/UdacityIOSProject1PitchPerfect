@@ -30,16 +30,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(animated: Bool) {
-        print("view appear")
-        stopButton.hidden = true
+        stopButton.enabled = false
         recordButton.enabled = true
-        recordButton.hidden = false
     }
 
     @IBAction func recordAudio(sender: UIButton) {
         recordingInProgress.hidden = false
-        stopButton.hidden = false
-        recordButton.hidden = true
+        stopButton.enabled = true
+        recordButton.enabled = false
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         
@@ -64,7 +62,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBAction func StopAudio(sender: UIButton) {
         recordingInProgress.hidden = true
-        recordButton.enabled = false
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
@@ -78,9 +75,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         }
         else{
-            print("REcording was not successful")
+            print("Recording was not successful")
             recordButton.enabled = true
-            stopButton.hidden = true
+            stopButton.enabled = false
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
