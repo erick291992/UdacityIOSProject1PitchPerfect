@@ -40,7 +40,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordButton.enabled = false
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        
+        //left this for future reference
 //        let currentDateTime = NSDate()
 //        let formatter = NSDateFormatter()
 //        formatter.dateFormat = "ddMMyyyy-HHmmss"
